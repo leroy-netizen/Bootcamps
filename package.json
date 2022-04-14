@@ -1,0 +1,21 @@
+{
+  "name": "bootcamp-finder",
+  "version": "1.0.0",
+  "description": "  an API for looking up bootcamps. Creating, updating, reading and deleting them.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node server",
+    "dev": "nodemon server"
+  },
+  "author": "Leroy Ombiji",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
