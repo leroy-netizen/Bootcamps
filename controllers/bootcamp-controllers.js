@@ -29,8 +29,15 @@ export const createBootcamp = async (req, res, next) => {
 // @route GET /api/v1/bootcamps
 // @access public
 
-export const getBootcamps = (req, res) => {
-  res.json({ success: true, message: `create bootcamp ${req.params.id}` });
+export const getBootcamps = async (req, res) => {
+  try {
+    const bootcamps = await BootcampModel.find();
+    res.status(200).json({ success: true, data: bootcamps });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+    });
+  }
 };
 
 // @desc  get a single bootcamp
