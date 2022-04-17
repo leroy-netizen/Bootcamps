@@ -13,13 +13,17 @@ const BootcampSchema = new mongoose.Schema({
     required: [true, 'description is required'],
     maxlength: [500, 'Only a maximum of 500 characters is supported'],
   },
-  match: [
-    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-    'Please use a valid URL with HTTP or HTTPS',
-  ],
+  website: {
+    type: String,
+    match: [
+      // /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+      /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/,
+      'Please use a valid URL with HTTP or HTTPS',
+    ],
+  },
   phone: {
     type: String,
-    maxLength: [10, 'Phone number cannot exceed 10 characters'],
+    maxLength: [15, 'Phone number cannot exceed 15 characters'],
   },
   email: {
     type: String,
@@ -34,18 +38,19 @@ const BootcampSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ['Point'],
-      required: true,
+      required: false,
     },
+
     coordinates: {
       type: [Number],
-      required: true,
+      required: false,
       index: '2dsphere',
     },
     formattedAddress: String,
-    street: String,
     city: String,
+    street: String,
     state: String,
-    zipcode: String,
+    Zipcode: String,
     country: String,
   },
   careers: {
@@ -53,7 +58,7 @@ const BootcampSchema = new mongoose.Schema({
     type: [String],
     required: true,
     enum: [
-      'MobileDevelopment',
+      'Mobile Development',
       'Web Development',
       'DevOps Engineering',
       'UI/UX design',
