@@ -58,8 +58,23 @@ export const getBootcamp = async (req, res) => {
 // @desc  update a bootcamp
 // @route PUT /api/v1/bootcamps/:id
 // @access private
-export const updateBootcamp = (req, res) => {
-  res.json({ success: true, message: `update bootcamp ${req.params.id}` });
+export const updateBootcamp = async (req, res) => {
+  const bootcamp = await BootcampModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!bootcamp) {
+    res.status(400).json({ success: false });
+  } else {
+    res.status(200).json({
+      sucess: true,
+      data: bootcamp,
+    });
+  }
 };
 
 // @desc  delete a bootcamps
