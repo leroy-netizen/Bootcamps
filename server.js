@@ -7,15 +7,18 @@ import connectDB from './config/db.js';
 // load env vars
 dotenv.config({ path: './config/config.env' });
 
-//route files
+//Route files
 import bootcampRoutes from './routes/bootcamp-routes.js';
-
-//connect to db
-connectDB();
 
 const app = express();
 
 // app.use(logger);
+
+//Body parser
+app.use(express.json());
+
+//connect to db
+connectDB();
 
 //dev logging middleware
 if ((process.env.NODE_ENV = 'development')) {
