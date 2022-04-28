@@ -26,7 +26,9 @@ export const createBootcamp = async (req, res, next) => {
 export const getBootcamps = async (req, res, next) => {
   try {
     const bootcamps = await BootcampModel.find();
-    res.status(200).json({ success: true, data: bootcamps });
+    res
+      .status(200)
+      .json({ success: true, count: bootcamps.length, data: bootcamps });
   } catch (error) {
     res.status(400).json({
       success: false,
